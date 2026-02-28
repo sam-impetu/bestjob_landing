@@ -3,6 +3,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>BestJob AI Talent Intelligence | Monterrey</title>
+<link rel="icon" type="image/png" href="assets/BestJob.png"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -25,6 +26,7 @@
         }
         .text-gradient-cyan {
             background: linear-gradient(135deg, var(--dark-cyan) 0%, var(--light-cyan) 100%);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -35,24 +37,35 @@
             background-image: radial-gradient(circle at 2px 2px, #00A3C415 1px, transparent 0);
             background-size: 40px 40px;
         }
+        html { scroll-behavior: smooth; }
+        [data-modal] { display: none; }
+        [data-modal].modal-open { display: flex; }
     </style>
 </head>
 <body class="antialiased">
 <nav class="sticky top-0 z-50 bg-[#FDFDFD]/90 backdrop-blur-md border-b border-gray-100">
 <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-<div class="flex items-center gap-2">
-<div class="w-10 h-10 bg-[var(--navy)] rounded flex items-center justify-center">
-<span class="material-symbols-outlined text-white">bolt</span>
-</div>
-<span class="text-2xl font-extrabold tracking-tight text-[var(--navy)]">BestJob</span>
-</div>
+<a href="#" class="flex items-center gap-2">
+<img src="assets/BestJob.png" alt="BestJob" class="h-10 w-auto object-contain"/>
+</a>
 <div class="hidden md:flex items-center gap-8 text-sm font-semibold">
 <a class="hover:text-[var(--light-cyan)] transition-colors" href="#soluciones">Soluciones</a>
 <a class="hover:text-[var(--light-cyan)] transition-colors" href="#tecnologia">Tecnología</a>
 <a class="hover:text-[var(--light-cyan)] transition-colors" href="#upskilling">Upskilling</a>
-<button class="px-6 py-2.5 bg-[var(--navy)] text-white rounded-full hover:bg-[var(--dark-cyan)] transition-all">
+<button type="button" class="px-6 py-2.5 bg-[var(--navy)] text-white rounded-full hover:bg-[var(--dark-cyan)] transition-all" data-open-modal="demo">
                     Solicitar Demo
                 </button>
+</div>
+<button type="button" class="md:hidden p-2 rounded-lg hover:bg-gray-100 text-[var(--navy)]" id="btn-menu-mobile" aria-label="Abrir menú" aria-expanded="false">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<div id="menu-mobile" class="md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-lg hidden">
+<div class="px-6 py-4 flex flex-col gap-2">
+<a class="py-3 font-semibold text-[var(--navy)] hover:text-[var(--light-cyan)]" href="#soluciones">Soluciones</a>
+<a class="py-3 font-semibold text-[var(--navy)] hover:text-[var(--light-cyan)]" href="#tecnologia">Tecnología</a>
+<a class="py-3 font-semibold text-[var(--navy)] hover:text-[var(--light-cyan)]" href="#upskilling">Upskilling</a>
+<button type="button" class="mt-2 w-full py-3 bg-[var(--navy)] text-white rounded-full font-semibold" data-open-modal="demo">Solicitar Demo</button>
 </div>
 </div>
 </nav>
@@ -69,12 +82,12 @@
                     Solucionamos el déficit de talento técnico en Monterrey mediante inteligencia semántica avanzada. Conectamos empresas de manufactura con profesionales listos para los retos del nearshoring.
                 </p>
 <div class="flex flex-wrap gap-4">
-<button class="px-8 py-4 bg-gradient-cyan text-white font-bold rounded-lg shadow-lg shadow-cyan-500/20 hover:scale-105 transition-transform">
+<button type="button" class="px-8 py-4 bg-gradient-cyan text-white font-bold rounded-lg shadow-lg shadow-cyan-500/20 hover:scale-105 transition-transform" data-open-modal="demo">
                         Solicitar Demo
                     </button>
-<button class="px-8 py-4 border-2 border-[var(--navy)] text-[var(--navy)] font-bold rounded-lg hover:bg-[var(--navy)] hover:text-white transition-colors">
+<a href="#soluciones" class="px-8 py-4 border-2 border-[var(--navy)] text-[var(--navy)] font-bold rounded-lg hover:bg-[var(--navy)] hover:text-white transition-colors inline-flex items-center justify-center">
                         Ver Soluciones
-                    </button>
+                    </a>
 </div>
 </div>
 </div>
@@ -136,7 +149,7 @@
 <h3 class="text-xl font-bold mb-4">Filtrado Semántico</h3>
 <p class="text-gray-600 text-sm">Cálculo multidimensional de Match Score basado en NLP, eliminando el sesgo humano y el filtrado por keywords simples.</p>
 </div>
-<div class="lg:col-span-4 bg-[var(--navy)] p-8 rounded-3xl text-white flex flex-col md:flex-row items-center gap-10">
+<div id="upskilling" class="lg:col-span-4 bg-[var(--navy)] p-8 rounded-3xl text-white flex flex-col md:flex-row items-center gap-10">
 <div class="flex-1">
 <div class="w-14 h-14 rounded-2xl bg-gradient-cyan flex items-center justify-center mb-6">
 <span class="material-symbols-outlined text-white text-3xl">school</span>
@@ -258,10 +271,10 @@
                         Únase a las empresas líderes en Monterrey que ya están optimizando sus procesos de contratación con BestJob.
                     </p>
 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-<button class="bg-white text-[var(--navy)] px-10 py-4 rounded-xl font-bold text-lg hover:shadow-2xl transition-all">
+<button type="button" class="bg-white text-[var(--navy)] px-10 py-4 rounded-xl font-bold text-lg hover:shadow-2xl transition-all" data-open-modal="demo">
                             Agendar Consultoría
                         </button>
-<button class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all">
+<button type="button" class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all" data-open-modal="reporte">
                             Descargar Reporte de Mercado
                         </button>
 </div>
@@ -275,11 +288,8 @@
 <div class="max-w-7xl mx-auto px-6">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
 <div class="col-span-1 md:col-span-1">
-<div class="flex items-center gap-2 mb-6">
-<div class="w-8 h-8 bg-[var(--navy)] rounded flex items-center justify-center">
-<span class="material-symbols-outlined text-white text-sm">bolt</span>
-</div>
-<span class="text-xl font-extrabold tracking-tight text-[var(--navy)]">BestJob</span>
+<div class="mb-6">
+<img src="assets/BestJob.png" alt="BestJob" class="h-10 w-auto object-contain"/>
 </div>
 <p class="text-gray-500 text-sm leading-relaxed mb-6">
                         Inteligencia de talento para la industria 4.0 en el polo de desarrollo más dinámico de México.
@@ -312,8 +322,8 @@
 <h4 class="font-bold text-[var(--navy)] mb-6 uppercase text-xs tracking-widest">Contacto</h4>
 <ul class="space-y-4 text-sm text-gray-500">
 <li class="flex gap-2"><span class="material-symbols-outlined text-xs">location_on</span> Monterrey, NL, México</li>
-<li class="flex gap-2"><span class="material-symbols-outlined text-xs">mail</span> contacto@bestjob.ai</li>
-<li class="flex gap-2"><span class="material-symbols-outlined text-xs">call</span> +52 (81) 0000-0000</li>
+<li class="flex gap-2"><span class="material-symbols-outlined text-xs">mail</span> <a href="mailto:contacto@bestjob.blog" class="hover:text-[var(--light-cyan)] transition-colors">contacto@bestjob.blog</a></li>
+<li class="flex gap-2"><span class="material-symbols-outlined text-xs">call</span> <a href="tel:+528100000000" class="hover:text-[var(--light-cyan)] transition-colors">+52 (81) 0000-0000</a></li>
 </ul>
 </div>
 </div>
@@ -326,5 +336,152 @@
 </div>
 </div>
 </footer>
+
+<!-- Modal Solicitar Demo / Agendar Consultoría -->
+<div id="modal-demo" data-modal class="fixed inset-0 z-[100] items-center justify-center bg-black/50 backdrop-blur-sm p-4" aria-hidden="true" role="dialog" aria-labelledby="modal-demo-title">
+  <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+    <div class="p-8">
+      <div class="flex justify-between items-start mb-6">
+        <h2 id="modal-demo-title" class="text-2xl font-extrabold text-[var(--navy)]">Solicitar demo</h2>
+        <button type="button" class="p-2 rounded-full hover:bg-gray-100 text-gray-500 transition-colors" data-close-modal aria-label="Cerrar">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <p class="text-gray-600 mb-6">Completa el formulario y nos pondremos en contacto para agendar tu demo o consultoría.</p>
+      <form id="form-demo" class="space-y-4">
+        <div>
+          <label for="demo-nombre" class="block text-sm font-semibold text-[var(--navy)] mb-1">Nombre completo</label>
+          <input type="text" id="demo-nombre" name="nombre" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--light-cyan)] focus:border-transparent outline-none transition" placeholder="Tu nombre"/>
+        </div>
+        <div>
+          <label for="demo-email" class="block text-sm font-semibold text-[var(--navy)] mb-1">Correo electrónico</label>
+          <input type="email" id="demo-email" name="email" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--light-cyan)] focus:border-transparent outline-none transition" placeholder="tu@empresa.com"/>
+        </div>
+        <div>
+          <label for="demo-empresa" class="block text-sm font-semibold text-[var(--navy)] mb-1">Empresa</label>
+          <input type="text" id="demo-empresa" name="empresa" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--light-cyan)] focus:border-transparent outline-none transition" placeholder="Nombre de tu empresa"/>
+        </div>
+        <div>
+          <label for="demo-mensaje" class="block text-sm font-semibold text-[var(--navy)] mb-1">Mensaje (opcional)</label>
+          <textarea id="demo-mensaje" name="mensaje" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--light-cyan)] focus:border-transparent outline-none transition resize-none" placeholder="Cuéntanos sobre tu necesidad de reclutamiento..."></textarea>
+        </div>
+        <button type="submit" class="w-full py-4 bg-gradient-cyan text-white font-bold rounded-xl hover:opacity-95 transition-opacity">
+          Enviar solicitud
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Descargar Reporte -->
+<div id="modal-reporte" data-modal class="fixed inset-0 z-[100] items-center justify-center bg-black/50 backdrop-blur-sm p-4" aria-hidden="true" role="dialog" aria-labelledby="modal-reporte-title">
+  <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+    <div class="p-8">
+      <div class="flex justify-between items-start mb-6">
+        <h2 id="modal-reporte-title" class="text-2xl font-extrabold text-[var(--navy)]">Descargar reporte de mercado</h2>
+        <button type="button" class="p-2 rounded-full hover:bg-gray-100 text-gray-500 transition-colors" data-close-modal aria-label="Cerrar">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <p class="text-gray-600 mb-6">Indica tu correo y te enviaremos el reporte de talento y nearshoring en Monterrey.</p>
+      <form id="form-reporte" class="space-y-4">
+        <div>
+          <label for="reporte-email" class="block text-sm font-semibold text-[var(--navy)] mb-1">Correo electrónico</label>
+          <input type="email" id="reporte-email" name="email" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--light-cyan)] focus:border-transparent outline-none transition" placeholder="tu@empresa.com"/>
+        </div>
+        <button type="submit" class="w-full py-4 bg-gradient-cyan text-white font-bold rounded-xl hover:opacity-95 transition-opacity">
+          Enviar y descargar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var modalOpen = document.querySelectorAll('[data-open-modal]');
+  var modalClose = document.querySelectorAll('[data-close-modal]');
+  var modals = document.querySelectorAll('[data-modal]');
+
+  function openModal(id) {
+    var m = document.getElementById('modal-' + id);
+    if (m) {
+      m.classList.add('modal-open');
+      m.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      m.querySelector('input, textarea')?.focus();
+    }
+  }
+  function closeModal(el) {
+    var m = el && el.closest ? el.closest('[data-modal]') : el;
+    if (m && m.hasAttribute('data-modal')) {
+      m.classList.remove('modal-open');
+      m.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+  function closeAllModals() {
+    modals.forEach(function (m) {
+      m.classList.remove('modal-open');
+      m.setAttribute('aria-hidden', 'true');
+    });
+    document.body.style.overflow = '';
+  }
+
+  modalOpen.forEach(function (btn) {
+    btn.addEventListener('click', function () { openModal(btn.getAttribute('data-open-modal')); });
+  });
+  modalClose.forEach(function (btn) {
+    btn.addEventListener('click', function () { closeModal(btn); });
+  });
+  modals.forEach(function (m) {
+    m.addEventListener('click', function (e) {
+      if (e.target === m) closeModal(m);
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAllModals();
+  });
+
+  document.getElementById('form-demo').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var n = document.getElementById('demo-nombre').value;
+    var em = document.getElementById('demo-email').value;
+    var emp = document.getElementById('demo-empresa').value;
+    var msg = document.getElementById('demo-mensaje').value;
+    var subject = encodeURIComponent('Solicitud de demo - BestJob');
+    var body = encodeURIComponent('Nombre: ' + n + '\nEmail: ' + em + '\nEmpresa: ' + emp + '\n\nMensaje:\n' + msg);
+    window.location.href = 'mailto:contacto@bestjob.blog?subject=' + subject + '&body=' + body;
+    closeAllModals();
+  });
+
+  document.getElementById('form-reporte').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var em = document.getElementById('reporte-email').value;
+    var subject = encodeURIComponent('Solicitud Reporte de Mercado - BestJob');
+    var body = encodeURIComponent('Por favor envíenme el reporte de mercado.\n\nMi correo: ' + em);
+    window.location.href = 'mailto:contacto@bestjob.blog?subject=' + subject + '&body=' + body;
+    closeAllModals();
+  });
+
+  var btnMenu = document.getElementById('btn-menu-mobile');
+  var menuMobile = document.getElementById('menu-mobile');
+  if (btnMenu && menuMobile) {
+    btnMenu.addEventListener('click', function () {
+      var open = !menuMobile.classList.contains('hidden');
+      menuMobile.classList.toggle('hidden', open);
+      btnMenu.setAttribute('aria-expanded', !open);
+      btnMenu.querySelector('.material-symbols-outlined').textContent = open ? 'menu' : 'close';
+    });
+    menuMobile.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        menuMobile.classList.add('hidden');
+        btnMenu.setAttribute('aria-expanded', 'false');
+        btnMenu.querySelector('.material-symbols-outlined').textContent = 'menu';
+      });
+    });
+  }
+})();
+</script>
 
 </body></html>
